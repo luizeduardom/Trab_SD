@@ -9,6 +9,7 @@ public class BaseDeDados {
     public BaseDeDados() {
         lista = new ArrayList();
     }
+   
 
     public void insere(String message) {
         lista.add(message.trim());
@@ -18,8 +19,8 @@ public class BaseDeDados {
         String s = "\n";
         int fim = lista.size();
 
-        for(int pos = 0; pos < fim; pos++) {
-            s = s + "[" + (pos + 1) + "]" + (String)lista.get(pos) + "\n";
+        for (int pos = 0; pos < fim; pos++) {
+            s = s + "[" + (pos + 1) + "]" + (String) lista.get(pos) + "\n";
         }
 
         return s;
