@@ -13,6 +13,11 @@ public class Cliente {
         this.filmesAvaliados = new ArrayList();
     }
 
+    public Cliente() {
+        this.filmesAvaliados = new ArrayList();
+    }
+    
+
     public String getNome() {
         return nome;
     }
@@ -28,6 +33,13 @@ public class Cliente {
     public void setFilmesAvaliados(List<Filme> filmesAvaliados) {
         this.filmesAvaliados = filmesAvaliados;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "nome=" + nome + ", filmesAvaliados=" + filmesAvaliados + '}' + "\n";
+    }
+    
+    
     
 
 }

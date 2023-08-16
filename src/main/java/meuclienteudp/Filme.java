@@ -25,6 +25,11 @@ public class Filme {
         this.titulo = titulo;
         this.avaliacao = 0;
     }
+
+    @Override
+    public String toString() {
+        return "Filme{" + "titulo=" + titulo + ", avaliacao=" + avaliacao + '}';
+    }
         
     
 }
