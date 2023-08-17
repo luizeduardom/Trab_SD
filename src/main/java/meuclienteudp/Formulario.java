@@ -40,10 +40,10 @@ public final class Formulario extends javax.swing.JFrame {
 
         txtServidor.setText(controlador.getNomeDNS());
         nome = validarNome();
-        validacaonome = controlador.enviarMensagem(nome);
+        validacaonome = controlador.enviarMensagem(nome + ".validar" );
         while (validacaonome.equals("-1")) {
             nome = validarNome();
-            validacaonome = controlador.enviarMensagem(nome);
+            validacaonome = controlador.enviarMensagem(nome + ".validar");
         }
         txtNome.setText(nome);
 
