@@ -12,7 +12,9 @@ public class MeuClienteUDP {
     private String nomeDNS;
     private int serverPort;
     private byte[] meuIP;
+    private int id;
 
+    
     public MeuClienteUDP() {
 
         try {
@@ -25,6 +27,16 @@ public class MeuClienteUDP {
 
         serverPort = 6789;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 
     public MeuClienteUDP(String nomeDNSServidor) {
         nomeDNS = "Usuario-PC";
