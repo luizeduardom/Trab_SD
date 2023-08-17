@@ -4,13 +4,24 @@ import java.net.*;
 import java.io.*;
 
 
+
 public class MeuServidorUDP {
     private static BaseDeDados bd = null;
 
+    
+        public BaseDeDados getInstance(){
+            if (bd == null){
+                return bd = new BaseDeDados();
+            }
+            else {
+                return bd;
+            }      
+    }
+
     public static void main(String[] args) {
         DatagramSocket aSocket = null;
-        bd = new BaseDeDados();
-        bd.criarMatriz();
+        
+        
         
         try {
             aSocket = new DatagramSocket(6789);

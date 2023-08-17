@@ -8,15 +8,24 @@ import meuclienteudp.Filme;
 public class BaseDeDados {
 
     private ArrayList lista = null;
+    List<Cliente> listaCliente = new ArrayList();
+    List<Filme> listaFilmes = new ArrayList();
+
+    public List<Cliente> getListaCliente() {
+        return listaCliente;
+    }
+
+    public List<Filme> getListaFilmes() {
+        return listaFilmes;
+    }
+    
+    
 
     public BaseDeDados() {
         lista = new ArrayList();
     }
-   
 
-    public void criarMatriz(){
-        List<Cliente> listaCliente = new ArrayList();
-        List<Filme> listaFilmes = new ArrayList();
+    public void criarMatriz() {
         Filme filme0 = new Filme("Cronicas de Narnia");
         Filme filme1 = new Filme("Bambi");
         Filme filme2 = new Filme("Ursinho Pool");
@@ -37,7 +46,7 @@ public class BaseDeDados {
         Filme filme17 = new Filme("Flash");
         Filme filme18 = new Filme("Homem de ferro");
         Filme filme19 = new Filme("Planeta dos macacos");
-        
+
         listaFilmes.add(filme0);
         listaFilmes.add(filme1);
         listaFilmes.add(filme2);
@@ -58,7 +67,7 @@ public class BaseDeDados {
         listaFilmes.add(filme17);
         listaFilmes.add(filme18);
         listaFilmes.add(filme19);
-        
+
         Cliente a = new Cliente();
         Cliente b = new Cliente();
         Cliente c = new Cliente();
@@ -69,50 +78,50 @@ public class BaseDeDados {
         Cliente h = new Cliente();
         Cliente i = new Cliente();
         Cliente j = new Cliente();
-        
+
         listaCliente.add(a);
         listaCliente.get(0).setNome("Asdrubal");
         listaCliente.get(0).setFilmesAvaliados(listaFilmes);
-        
+
         listaCliente.add(b);
         listaCliente.get(1).setNome("Bruno");
         listaCliente.get(1).setFilmesAvaliados(listaFilmes);
-        
+
         listaCliente.add(c);
         listaCliente.get(2).setNome("Cadu");
         listaCliente.get(2).setFilmesAvaliados(listaFilmes);
-        
+
         listaCliente.add(d);
         listaCliente.get(3).setNome("Breno");
         listaCliente.get(3).setFilmesAvaliados(listaFilmes);
-        
+
         listaCliente.add(e);
         listaCliente.get(4).setNome("Filipe");
         listaCliente.get(4).setFilmesAvaliados(listaFilmes);
-        
+
         listaCliente.add(f);
         listaCliente.get(5).setNome("Fernanda");
         listaCliente.get(5).setFilmesAvaliados(listaFilmes);
-        
+
         listaCliente.add(g);
         listaCliente.get(6).setNome("Julio");
         listaCliente.get(6).setFilmesAvaliados(listaFilmes);
-        
+
         listaCliente.add(h);
         listaCliente.get(7).setNome("Pedro");
         listaCliente.get(7).setFilmesAvaliados(listaFilmes);
-        
+
         listaCliente.add(i);
         listaCliente.get(8).setNome("Geovana");
         listaCliente.get(8).setFilmesAvaliados(listaFilmes);
-        
+
         listaCliente.add(j);
         listaCliente.get(9).setNome("Filomena");
         listaCliente.get(9).setFilmesAvaliados(listaFilmes);
-        
-             
+
         System.out.println(listaCliente);
     }
+
     public void insere(String message) {
         lista.add(message.trim());
     }
@@ -127,5 +136,12 @@ public class BaseDeDados {
 
         return s;
     }
+
+    @Override
+    public String toString() {
+        return "BaseDeDados{" + "listaCliente=" + listaCliente + ", listaFilmes=" + listaFilmes + '}';
+    }
+    
+    
 
 }
