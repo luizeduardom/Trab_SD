@@ -1,6 +1,5 @@
 package meuclienteudp;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public final class Formulario extends javax.swing.JFrame {
@@ -8,6 +7,7 @@ public final class Formulario extends javax.swing.JFrame {
     private String validacaonome;
     private String nome;
     private MeuClienteUDP controlador;
+    private String mensagem;
 
     public String validarNome() {
         nome = JOptionPane.showInputDialog(null, "Informe seu identificador para o chat:");
@@ -37,19 +37,6 @@ public final class Formulario extends javax.swing.JFrame {
         esconderBotoesAvaliacao();
 
         controlador = new MeuClienteUDP();
-
-        txtServidor.setText(controlador.getNomeDNS());
-        nome = validarNome();
-        validacaonome = controlador.enviarMensagem(nome + ";validar" );
-        System.out.println("Variavel validacaonome: " + validacaonome);
-        while (validacaonome.contains("-1")) {
-            System.out.println("passei aqui");
-            nome = validarNome();
-            validacaonome = controlador.enviarMensagem(nome + ";validar");
-        }
-        txtNome.setText(nome);
-
-        txtServidor.requestFocus();
 
     }
 
@@ -225,23 +212,11 @@ public final class Formulario extends javax.swing.JFrame {
 
 
     private void botListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botListarActionPerformed
-        int id = controlador.getId();
-        String mensagem = controlador.enviarMensagem(id + ";listar");
-        
-        System.out.println(" a mensagem que está chegando é: " + mensagem);
-        if (mensagem.contains("-1")){
-            jTextArea1.setText("Não existem filmes avaliados.");
-        } else {
-            jTextArea1.setText(mensagem);
-        }
+      
     }//GEN-LAST:event_botListarActionPerformed
 
     private void chkAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAvaliarActionPerformed
-        if (chkAvaliar.isSelected()) {
-            mostrarBotoesAvaliacao();
-        } else {
-            esconderBotoesAvaliacao();
-        }
+        
     }//GEN-LAST:event_chkAvaliarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
