@@ -40,10 +40,12 @@ public final class Formulario extends javax.swing.JFrame {
 
         txtServidor.setText(controlador.getNomeDNS());
         nome = validarNome();
-        validacaonome = controlador.enviarMensagem(nome + ".validar" );
-        while (validacaonome.equals("-1")) {
+        validacaonome = controlador.enviarMensagem(nome + ";validar" );
+        System.out.println("Variavel validacaonome: " + validacaonome);
+        while (validacaonome.contains("-1")) {
+            System.out.println("passei aqui");
             nome = validarNome();
-            validacaonome = controlador.enviarMensagem(nome + ".validar");
+            validacaonome = controlador.enviarMensagem(nome + ";validar");
         }
         txtNome.setText(nome);
 
@@ -223,8 +225,15 @@ public final class Formulario extends javax.swing.JFrame {
 
 
     private void botListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botListarActionPerformed
-
-
+        int id = controlador.getId();
+        String mensagem = controlador.enviarMensagem(id + ";listar");
+        
+        System.out.println(" a mensagem que está chegando é: " + mensagem);
+        if (mensagem.contains("-1")){
+            jTextArea1.setText("Não existem filmes avaliados.");
+        } else {
+            jTextArea1.setText(mensagem);
+        }
     }//GEN-LAST:event_botListarActionPerformed
 
     private void chkAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAvaliarActionPerformed
@@ -236,7 +245,7 @@ public final class Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_chkAvaliarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        controlador.enviarMensagem(controlador.getId()+ ".mostrar");
+
     }//GEN-LAST:event_formComponentShown
 
     private void botAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAvaliacaoActionPerformed
