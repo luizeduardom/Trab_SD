@@ -6,8 +6,9 @@ public final class Formulario extends javax.swing.JFrame {
 
     private String validacaonome;
     private String nome;
-    private MeuClienteUDP controlador;
+    private MeuClienteUDP controladora;
     private String mensagem;
+    private int id;
 
     public String validarNome() {
         nome = JOptionPane.showInputDialog(null, "Informe seu identificador para o chat:");
@@ -32,11 +33,18 @@ public final class Formulario extends javax.swing.JFrame {
     }
 
     public Formulario() {
-        initComponents();
+        controladora = new MeuClienteUDP();
+        do {
+            nome = validarNome();
+            mensagem = controladora.enviarMensagem(nome + ";validarNome");
 
+        } while (mensagem.contains("-1"));
+
+        initComponents();
+        txtNome.setText(nome);
+        txtServidor.setText(controladora.getNomeDNS());
         esconderBotoesAvaliacao();
 
-        controlador = new MeuClienteUDP();
 
     }
 
@@ -212,11 +220,19 @@ public final class Formulario extends javax.swing.JFrame {
 
 
     private void botListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botListarActionPerformed
-      
+        mensagem = controladora.enviarMensagem("asniaks" + ";pegarId");
+        id = Integer.parseInt(mensagem.trim());
+        mensagem = controladora.enviarMensagem(id + ";listar");
+        System.out.println("to printando a mensagem: " + mensagem);
+        if (mensagem.contains("-1")){
+            jTextArea1.setText("Não existem filmes avaliados");
+        } else {
+            jTextArea1.setText(mensagem);
+        }
     }//GEN-LAST:event_botListarActionPerformed
 
     private void chkAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAvaliarActionPerformed
-        
+
     }//GEN-LAST:event_chkAvaliarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
