@@ -9,6 +9,7 @@ public final class Formulario extends javax.swing.JFrame {
     private MeuClienteUDP controladora;
     private String mensagem;
     private int id;
+    private String mensagemAnterior;
 
     public String validarNome() {
         nome = JOptionPane.showInputDialog(null, "Informe seu identificador para o chat:");
@@ -39,10 +40,13 @@ public final class Formulario extends javax.swing.JFrame {
             mensagem = controladora.enviarMensagem(nome + ";validarNome");
 
         } while (mensagem.contains("-1"));
+        
 
         initComponents();
         txtNome.setText(nome);
         txtServidor.setText(controladora.getNomeDNS());
+        jTextArea1.setText("Logado como:" + "{" + nome + "}" + "\n");
+        mensagemAnterior = jTextArea1.getText();
         esconderBotoesAvaliacao();
 
 
@@ -224,10 +228,11 @@ public final class Formulario extends javax.swing.JFrame {
         id = Integer.parseInt(mensagem.trim());
         mensagem = controladora.enviarMensagem(id + ";listar");
         System.out.println("to printando a mensagem: " + mensagem);
+        mensagemAnterior = jTextArea1.getText();
         if (mensagem.contains("-1")){
-            jTextArea1.setText("Não existem filmes avaliados");
+            jTextArea1.setText(mensagemAnterior + "\nNão existem filmes avaliados");
         } else {
-            jTextArea1.setText(mensagem);
+            jTextArea1.setText(mensagemAnterior + "\n" + mensagem);
         }
     }//GEN-LAST:event_botListarActionPerformed
 
