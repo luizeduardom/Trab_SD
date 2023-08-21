@@ -44,12 +44,12 @@ public final class Formulario extends javax.swing.JFrame {
         txtNome.setText(nome);
         txtServidor.setText(controladora.getNomeDNS());
         txtArea.setText("Logado como:" + " {" + nome + "}" + "\n");
-        mensagemAnterior = txtArea.getText();              
-        esconderBotoesAvaliacao();     
-        
+        mensagemAnterior = txtArea.getText();
+        esconderBotoesAvaliacao();
+
         String idString = controladora.enviarMensagem(nome + ";pegarId");
         id = Integer.parseInt(idString.trim());
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -226,14 +226,14 @@ public final class Formulario extends javax.swing.JFrame {
 
 
     private void botListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botListarActionPerformed
-             
+
         mensagem = controladora.enviarMensagem(id + ";listar");
-        
+
         mensagemAnterior = txtArea.getText();
         if (mensagem.contains("-1")) {
             txtArea.setText(mensagemAnterior + "\nNão existem filmes avaliados");
         } else {
-            txtArea.setText(mensagemAnterior + "\n" + mensagem );
+            txtArea.setText(mensagemAnterior + "\n" + mensagem);
         }
     }//GEN-LAST:event_botListarActionPerformed
 
@@ -256,22 +256,28 @@ public final class Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void botAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAvaliacaoActionPerformed
-    int indiceFilme = cmbFilmes.getSelectedIndex();
-    int avaliacao = Integer.parseInt(spnAvaliacao.getValue().toString());
-    
-    controladora.enviarMensagem(id + ";avaliar;" + indiceFilme + ";" + avaliacao);
+        int indiceFilme = cmbFilmes.getSelectedIndex();
+        int avaliacao = Integer.parseInt(spnAvaliacao.getValue().toString());
 
-    esconderBotoesAvaliacao();
-    chkAvaliar.setSelected(false);
-    
-    JOptionPane.showMessageDialog(this, "Cliente " + nome + " {ID = " + id + "} avaliou o filme '" + cmbFilmes.getItemAt(indiceFilme) + "' com suscesso! ", "Suscesso!", JOptionPane.INFORMATION_MESSAGE  );
+        controladora.enviarMensagem(id + ";avaliar;" + indiceFilme + ";" + avaliacao);
+
+        esconderBotoesAvaliacao();
+        chkAvaliar.setSelected(false);
+        spnAvaliacao.setValue(1);
+
+        JOptionPane.showMessageDialog(this, "Cliente " + nome + " {ID = " + id + "} avaliou o filme '" + cmbFilmes.getItemAt(indiceFilme) + "' com suscesso! ", "Suscesso!", JOptionPane.INFORMATION_MESSAGE);
 
 
     }//GEN-LAST:event_botAvaliacaoActionPerformed
 
     private void botRecomendacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botRecomendacaoActionPerformed
-
-        
+        mensagem = controladora.enviarMensagem(id + ";recomendar");
+        mensagemAnterior = txtArea.getText();
+        if (mensagem.contains("-1")) {
+            txtArea.setText(mensagemAnterior + "\nNão achamos filmes recomendados para você");
+        } else {
+            txtArea.setText(mensagemAnterior + "\n" + " Fizemos uma pesquisa e vimos que o melhor filme para você assistir é: " + mensagem);
+        }
 
 
     }//GEN-LAST:event_botRecomendacaoActionPerformed
