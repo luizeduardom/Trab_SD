@@ -24,7 +24,6 @@ public class MeuClienteUDP {
         } catch (UnknownHostException e) {
             System.out.println("Host desconhecido: " + e.getMessage());
         }
-
         serverPort = 6789;
     }
 
@@ -35,8 +34,6 @@ public class MeuClienteUDP {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
 
     public MeuClienteUDP(String nomeDNSServidor) {
         nomeDNS = "Usuario-PC";

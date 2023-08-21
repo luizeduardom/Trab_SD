@@ -47,30 +47,30 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblServidor" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNome" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtServidor" pref="356" max="32767" attributes="0"/>
-                          <Component id="txtNome" pref="356" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="botRecomendacao" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="botListar" min="-2" pref="203" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblServidor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNome" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtServidor" pref="356" max="32767" attributes="0"/>
+                                  <Component id="txtNome" pref="356" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                           <Component id="lblAvaliacao" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="92" pref="92" max="-2" attributes="0"/>
                               <Component id="spnAvaliacao" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="botAvaliacao" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="botRecomendacao" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                              <Component id="botListar" min="-2" pref="203" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -79,12 +79,12 @@
                               </Group>
                               <EmptySpace min="46" pref="46" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtFilme" min="-2" pref="356" max="-2" attributes="0"/>
-                                  <Component id="chkAvaliar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkAvaliar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbFilmes" pref="356" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -109,17 +109,17 @@
                   <Component id="chkAvaliar" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="lblFilme" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFilme" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbFilmes" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblAvaliacao" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="spnAvaliacao" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botAvaliacao" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botRecomendacao" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botListar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -145,7 +145,6 @@
     <Component class="javax.swing.JTextField" name="txtServidor">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNome">
@@ -159,7 +158,6 @@
     <Component class="javax.swing.JTextField" name="txtNome">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -197,6 +195,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Solicitar recomenda&#xe7;&#xe3;o de filme"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botRecomendacaoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botListar">
       <Properties>
@@ -234,7 +235,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="txtArea">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -242,11 +243,36 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtFilme">
+    <Component class="javax.swing.JComboBox" name="cmbFilmes">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="20">
+            <StringItem index="0" value="Cronicas de Narnia"/>
+            <StringItem index="1" value="Bambi"/>
+            <StringItem index="2" value="Ursinho Pool"/>
+            <StringItem index="3" value="Barbie"/>
+            <StringItem index="4" value="Stuart Liro"/>
+            <StringItem index="5" value="Liro stiti"/>
+            <StringItem index="6" value="Mickey mousse"/>
+            <StringItem index="7" value="Pequeno sereio"/>
+            <StringItem index="8" value="Nata goiaba"/>
+            <StringItem index="9" value="Floquis"/>
+            <StringItem index="10" value="Pluto"/>
+            <StringItem index="11" value="Pateta"/>
+            <StringItem index="12" value="Scooby doo"/>
+            <StringItem index="13" value="Monstros SA"/>
+            <StringItem index="14" value="Kick buttowisk"/>
+            <StringItem index="15" value="Atirador"/>
+            <StringItem index="16" value="Justiceiro"/>
+            <StringItem index="17" value="Flash"/>
+            <StringItem index="18" value="Homem de ferro"/>
+            <StringItem index="19" value="Planeta dos macacos"/>
+          </StringArray>
+        </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

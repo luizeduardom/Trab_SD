@@ -4,12 +4,11 @@ import javax.swing.JOptionPane;
 
 public final class Formulario extends javax.swing.JFrame {
 
-    private String validacaonome;
     private String nome;
     private MeuClienteUDP controladora;
     private String mensagem;
-    private int id;
     private String mensagemAnterior;
+    private int id;
 
     public String validarNome() {
         nome = JOptionPane.showInputDialog(null, "Informe seu identificador para o chat:");
@@ -22,7 +21,7 @@ public final class Formulario extends javax.swing.JFrame {
         spnAvaliacao.setVisible(false);
         botAvaliacao.setVisible(false);
         lblFilme.setVisible(false);
-        txtFilme.setVisible(false);
+        cmbFilmes.setVisible(false);
     }
 
     public void mostrarBotoesAvaliacao() {
@@ -30,7 +29,7 @@ public final class Formulario extends javax.swing.JFrame {
         spnAvaliacao.setVisible(true);
         botAvaliacao.setVisible(true);
         lblFilme.setVisible(true);
-        txtFilme.setVisible(true);
+        cmbFilmes.setVisible(true);
     }
 
     public Formulario() {
@@ -40,16 +39,17 @@ public final class Formulario extends javax.swing.JFrame {
             mensagem = controladora.enviarMensagem(nome + ";validarNome");
 
         } while (mensagem.contains("-1"));
-        
 
         initComponents();
         txtNome.setText(nome);
         txtServidor.setText(controladora.getNomeDNS());
-        jTextArea1.setText("Logado como:" + "{" + nome + "}" + "\n");
-        mensagemAnterior = jTextArea1.getText();
-        esconderBotoesAvaliacao();
-
-
+        txtArea.setText("Logado como:" + " {" + nome + "}" + "\n");
+        mensagemAnterior = txtArea.getText();              
+        esconderBotoesAvaliacao();     
+        
+        String idString = controladora.enviarMensagem(nome + ";pegarId");
+        id = Integer.parseInt(idString.trim());
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -71,8 +71,8 @@ public final class Formulario extends javax.swing.JFrame {
         lblAvaliar = new javax.swing.JLabel();
         chkAvaliar = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        txtFilme = new javax.swing.JTextField();
+        txtArea = new javax.swing.JTextArea();
+        cmbFilmes = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -86,13 +86,11 @@ public final class Formulario extends javax.swing.JFrame {
         lblServidor.setText("Servidor");
 
         txtServidor.setEditable(false);
-        txtServidor.setText("jTextField1");
 
         lblNome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblNome.setText("Nome");
 
         txtNome.setEditable(false);
-        txtNome.setText("jTextField2");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Resposta do Servidor");
@@ -106,6 +104,11 @@ public final class Formulario extends javax.swing.JFrame {
         spnAvaliacao.setModel(new javax.swing.SpinnerNumberModel(1, 1, 3, 1));
 
         botRecomendacao.setText("Solicitar recomendação de filme");
+        botRecomendacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botRecomendacaoActionPerformed(evt);
+            }
+        });
 
         botListar.setText("Listar minhas avaliações");
         botListar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,12 +133,11 @@ public final class Formulario extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
 
-        txtFilme.setEditable(false);
-        txtFilme.setText("jTextField1");
+        cmbFilmes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cronicas de Narnia", "Bambi", "Ursinho Pool", "Barbie", "Stuart Liro", "Liro stiti", "Mickey mousse", "Pequeno sereio", "Nata goiaba", "Floquis", "Pluto", "Pateta", "Scooby doo", "Monstros SA", "Kick buttowisk", "Atirador", "Justiceiro", "Flash", "Homem de ferro", "Planeta dos macacos" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,16 +155,20 @@ public final class Formulario extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblServidor)
-                            .addComponent(lblNome))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(botRecomendacao)
+                        .addGap(62, 62, 62)
+                        .addComponent(botListar, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 25, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblServidor)
+                                    .addComponent(lblNome))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)))
                             .addComponent(lblAvaliacao)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(92, 92, 92)
@@ -170,18 +176,14 @@ public final class Formulario extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(botAvaliacao))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(botRecomendacao)
-                                .addGap(62, 62, 62)
-                                .addComponent(botListar, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblFilme)
                                     .addComponent(lblAvaliar))
                                 .addGap(46, 46, 46)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(chkAvaliar))))
-                        .addGap(0, 31, Short.MAX_VALUE))))
+                                    .addComponent(chkAvaliar)
+                                    .addComponent(cmbFilmes, 0, 356, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,15 +201,15 @@ public final class Formulario extends javax.swing.JFrame {
                     .addComponent(lblAvaliar)
                     .addComponent(chkAvaliar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblFilme)
-                    .addComponent(txtFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(cmbFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAvaliacao)
                     .addComponent(spnAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botAvaliacao))
-                .addGap(20, 20, 20)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botRecomendacao)
                     .addComponent(botListar))
@@ -224,19 +226,28 @@ public final class Formulario extends javax.swing.JFrame {
 
 
     private void botListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botListarActionPerformed
-        mensagem = controladora.enviarMensagem("asniaks" + ";pegarId");
-        id = Integer.parseInt(mensagem.trim());
+             
         mensagem = controladora.enviarMensagem(id + ";listar");
-        System.out.println("to printando a mensagem: " + mensagem);
-        mensagemAnterior = jTextArea1.getText();
-        if (mensagem.contains("-1")){
-            jTextArea1.setText(mensagemAnterior + "\nNão existem filmes avaliados");
+        
+        mensagemAnterior = txtArea.getText();
+        if (mensagem.contains("-1")) {
+            txtArea.setText(mensagemAnterior + "\nNão existem filmes avaliados");
         } else {
-            jTextArea1.setText(mensagemAnterior + "\n" + mensagem);
+            txtArea.setText(mensagemAnterior + "\n" + mensagem );
         }
     }//GEN-LAST:event_botListarActionPerformed
 
     private void chkAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAvaliarActionPerformed
+
+        if (chkAvaliar.isSelected()) {
+            cmbFilmes.setVisible(true);
+            spnAvaliacao.setVisible(true);
+            botAvaliacao.setVisible(true);
+        } else {
+            cmbFilmes.setVisible(false);
+            spnAvaliacao.setVisible(false);
+            botAvaliacao.setVisible(false);
+        }
 
     }//GEN-LAST:event_chkAvaliarActionPerformed
 
@@ -245,8 +256,25 @@ public final class Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void botAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAvaliacaoActionPerformed
+    int indiceFilme = cmbFilmes.getSelectedIndex();
+    int avaliacao = Integer.parseInt(spnAvaliacao.getValue().toString());
+    
+    controladora.enviarMensagem(id + ";avaliar;" + indiceFilme + ";" + avaliacao);
+
+    esconderBotoesAvaliacao();
+    chkAvaliar.setSelected(false);
+    
+    JOptionPane.showMessageDialog(this, "Cliente " + nome + " {ID = " + id + "} avaliou o filme '" + cmbFilmes.getItemAt(indiceFilme) + "' com suscesso! ", "Suscesso!", JOptionPane.INFORMATION_MESSAGE  );
+
 
     }//GEN-LAST:event_botAvaliacaoActionPerformed
+
+    private void botRecomendacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botRecomendacaoActionPerformed
+
+        
+
+
+    }//GEN-LAST:event_botRecomendacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,17 +316,17 @@ public final class Formulario extends javax.swing.JFrame {
     private javax.swing.JButton botListar;
     private javax.swing.JButton botRecomendacao;
     private javax.swing.JCheckBox chkAvaliar;
+    private javax.swing.JComboBox<String> cmbFilmes;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblAvaliacao;
     private javax.swing.JLabel lblAvaliar;
     private javax.swing.JLabel lblFilme;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblServidor;
     private javax.swing.JSpinner spnAvaliacao;
-    private javax.swing.JTextField txtFilme;
+    private javax.swing.JTextArea txtArea;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtServidor;
     // End of variables declaration//GEN-END:variables
